@@ -25,18 +25,25 @@ export class Favorites {
   }
 
   async add(username) {
-    const user = await GithubUser.search(username);
+    try {
+      const userExists = this.entries.find((entry) => entry.login === username);
 
-    console.log(user);
+      if (userExists) {
+        throw new Error("Usuário já cadastrado");
+      }
+
+      const user = await GithubUser.search(username);
+
+      if (user.login === undefined) {
+        throw new Error("Usuário não encontrado!");
+      }
+
+      this.entries = [user, ...this.entries];
+      this.update();
+    } catch (error) {
+      alert(error.message);
+    }
   }
-
-  // delete(user) {
-  //   const filteredEntries = this.entries.filter((entry) => {
-  //     return entry.login !== user.login;
-  //   });
-  //   this.entries = filteredEntries;
-  //   this.update();
-  // }
 
   delete(user) {
     const filteredEntries = this.entries.filter((element) => {
