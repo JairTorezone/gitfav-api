@@ -6,4 +6,10 @@ export class FavoritesView extends Favorites {
 
     this.tbody = this.root.querySelector("table tbody");
   }
+
+  removeTrAll() {
+    this.tbody.querySelectorAll("tr").forEach((element) => {
+      element.remove();
+    });
+  }
 }
