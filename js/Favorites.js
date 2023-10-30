@@ -7,21 +7,12 @@ export class Favorites {
     this.add();
   }
 
+  save() {
+    localStorage.setItem("@github-favorites:", JSON.stringify(this.entries));
+  }
+
   load() {
-    this.entries = [
-      {
-        login: "jairtorezone",
-        name: "Jair Torezone",
-        public_repos: "72",
-        followers: "730",
-      },
-      {
-        login: "JtRibeiro",
-        name: "Josias Torezone",
-        public_repos: "3",
-        followers: "7",
-      },
-    ];
+    this.entries = JSON.parse(localStorage.getItem("@github-favorites:")) || [];
   }
 
   async add(username) {
@@ -40,6 +31,7 @@ export class Favorites {
 
       this.entries = [user, ...this.entries];
       this.update();
+      this.save();
     } catch (error) {
       alert(error.message);
     }
@@ -51,5 +43,6 @@ export class Favorites {
     });
     this.entries = filteredEntries;
     this.update();
+    this.save();
   }
 }

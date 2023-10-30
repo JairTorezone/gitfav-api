@@ -87,9 +87,12 @@ header {
 
   cursor: pointer;
 }
-.search button:hover {
+.search button:hover,
+.search button:hover svg path {
   background: var(--bg-color-button-hover);
   color: var(--text-color-button-favorite-hover);
+
+  fill: var(--text-color-button-favorite-hover);
 }
 
 .sr-only {
@@ -217,4 +220,57 @@ table .table-empty div p {
 table .table-empty div img {
   width: 13.2rem;
   height: 12.5rem;
+}
+
+@media (max-width: 1110px) {
+  table .table-empty div p {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 850px) {
+  #app {
+    max-width: 50rem;
+  }
+  header img {
+    width: 13rem;
+  }
+  .search button {
+    width: 100px;
+    font-size: 1.2rem;
+  }
+  .search input {
+    width: 15rem;
+    font-size: 1.2rem;
+  }
+  table {
+    width: fit-content;
+    font-size: 1.4rem;
+  }
+  table th {
+    padding: 1.6rem 2rem;
+    font-size: 1.4rem;
+  }
+  table td.user p,
+  table td.user a span {
+    font-size: 1.4rem;
+    line-height: 130%;
+  }
+  table td {
+    padding: 1rem 1rem;
+  }
+  table td.user {
+    gap: 2rem;
+  }
+  table td .remove {
+    font-size: 1.4rem;
+  }
+
+  table .table-empty div {
+    padding: 6rem 9rem;
+    gap: 5rem;
+  }
+  table .table-empty div p {
+    font-size: 2rem;
+  }
 }
